@@ -1,0 +1,10 @@
+[package]
+name = "nepheliad"
+version = "0.1.0"
+authors = ["Sean Kell <sean.michael.kell@gmail.com>"]
+
+[lib]
+crate-type = ["staticlib"]
+
+[dependencies]
+rlibc = "0.1.4"
