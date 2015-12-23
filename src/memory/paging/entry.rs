@@ -1,5 +1,8 @@
 use memory::Frame;	// needed later 
 
+/// Represents a fixed-size slot of physical memory.
+///
+/// A page frame contains a single virtual-memory page.
 pub struct Entry(u64);
 
 impl Entry {
