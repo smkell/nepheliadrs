@@ -2,10 +2,16 @@
 name = "nepheliad"
 version = "0.1.0"
 dependencies = [
+ "bitflags 0.3.3 (git+https://github.com/phil-opp/bitflags.git?branch=no_std)",
  "multiboot2 0.1.0 (git+https://github.com/phil-opp/multiboot2-elf64)",
  "rlibc 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "spin 0.3.4 (registry+https://github.com/rust-lang/crates.io-index)",
 ]
+
+[[package]]
+name = "bitflags"
+version = "0.3.3"
+source = "git+https://github.com/phil-opp/bitflags.git?branch=no_std#86fd8e7081ba667c34af8a81f449b21542d3f1a0"
 
 [[package]]
 name = "multiboot2"
