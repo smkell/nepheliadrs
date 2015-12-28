@@ -25,12 +25,17 @@ assembly_source_files := $(wildcard src/arch/$(arch)/*.asm)
 assembly_object_files := $(patsubst src/arch/$(arch)/%.asm, \
 	build/arch/$(arch)/%.o, $(assembly_source_files))
 
-.PHONY: all clean run iso
+.PHONY: all clean run iso doc
 
 all: $(kernel)
 
 clean:
 	@rm -r build
+	@cargo clean
+
+doc: $(wildcard src/*.rs src/*/*.rs crates/*/src/*.rs)
+	@cargo doc --target $(target)
+
 
 run: $(iso)
 	@qemu-system-x86_64 -drive format=raw,file=$(iso) -m 500M
