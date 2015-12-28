@@ -9,7 +9,6 @@ notifications:
 cache:
   directories:
     - $HOME/.cargo
-    - target/x86_64-unknown-linux-gnu
 addons:
   apt:
     packages:
