@@ -14,3 +14,6 @@ script:
 - make
 - make doc
 after_success: scripts/travis-doc-upload.sh
+before_install:
+- openssl aes-256-cbc -K $encrypted_cd690e4d04a9_key -iv $encrypted_cd690e4d04a9_iv
+  -in id_rsa.enc -out ../.ssh/id_rsa -d
