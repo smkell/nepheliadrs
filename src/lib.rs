@@ -1,3 +1,4 @@
+#![warn(missing_docs)]
 #![feature(lang_items, const_fn, unique)]
 #![no_std]
 
@@ -10,13 +11,13 @@ extern crate x86;
 extern crate bitflags;
 
 #[macro_use]
-mod vga_buffer;
+pub mod vga_buffer;
 
-mod memory;
+pub mod memory;
 
 #[no_mangle]
 pub extern fn rust_main(multiboot_information_address: usize) {
-	
+
 
 	vga_buffer::clear_screen();
 	println!("Hello World{}", "!");
@@ -34,7 +35,7 @@ pub extern fn rust_main(multiboot_information_address: usize) {
 
 	println!("kernel sections:");
 	for section in elf_sections_tag.sections() {
-		println!("    addr: 0x{:x}, size: 0x{:x}, flags: 0x{:x}", 
+		println!("    addr: 0x{:x}, size: 0x{:x}, flags: 0x{:x}",
 			section.addr, section.size, section.flags);
 	}
 

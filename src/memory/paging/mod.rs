@@ -20,7 +20,10 @@ mod table;
 
 const ENTRY_COUNT: usize = 512;
 
+/// Represents a physical memory address.
 pub type PhysicalAddress = usize;
+
+/// Represents a virtual memory address.
 pub type VirtualAddress = usize;
 
 /// Represents a page of virtual memory.
@@ -155,9 +158,14 @@ impl RecusivePageTable {
 	/// 
 	/// # Parameters
 	/// 
-	/// * page - The page to map to a frame.
-	/// * flags - The entry flags to apply to the new page entry.
-	/// * allocator - The allocator to use for allocating the fame to the page.
+	/// * `page`
+	/// The page to map to a frame.
+	/// 
+	/// * `flags`
+	/// The entry flags to apply to the new page entry.
+	///
+	/// * `allocator`
+	/// The allocator to use for allocating the fame to the page.
 	/// 
 	/// # Panics 
 	/// 
@@ -214,6 +222,11 @@ impl RecusivePageTable {
 	}
 }
 
+/// Tests the paging Module.
+///
+/// # Parameters
+/// ## allocator
+/// The allocator to use for testing the paging functions.
 pub fn test_paging<A>(allocator: &mut A)
 	where A : FrameAllocator
 {
