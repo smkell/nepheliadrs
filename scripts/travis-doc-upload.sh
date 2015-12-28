@@ -11,8 +11,8 @@
 
 [ "$TRAVIS_PULL_REQUEST" = false ]
 
-eval key=\$encrypted_${SSH_KEY_TRAVIS_ID}_key
-eval iv=\$encrypted_${SSH_KEY_TRAVIS_ID}_iv
+set key=$encrypted_cd690e4d04a9_key
+set iv=$encrypted_cd690e4d04a9_iv
 
 mkdir -p ~/.ssh
 openssl aes-256-cbc -K $key -iv $iv -in scripts/id_rsa.enc -out ~/.ssh/id_rsa -d
