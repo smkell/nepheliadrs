@@ -1,19 +1,16 @@
 language: rust
-
 rust:
-  - nightly
-
+- nightly
 sudo: false
-
 notifications:
   email:
     on_success: never
     on_failure: change
-
 addons:
   apt:
     packages:
-      - nasm
-
+    - nasm
 script:
-  - make
+- make
+after_success: curl https://raw.githubusercontent.com/kmcallister/travis-doc-upload/master/travis-doc-upload.sh | sh
+
