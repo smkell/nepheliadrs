@@ -11,8 +11,8 @@
 
 [ "$TRAVIS_PULL_REQUEST" = false ]
 
-set key=$encrypted_cd690e4d04a9_key
-set iv=$encrypted_cd690e4d04a9_iv
+export key=$encrypted_cd690e4d04a9_key
+export iv=$encrypted_cd690e4d04a9_iv
 
 mkdir -p ~/.ssh
 openssl aes-256-cbc -K $key -iv $iv -in scripts/id_rsa.enc -out ~/.ssh/id_rsa -d
