@@ -82,12 +82,19 @@ impl RecusivePageTable {
 		unsafe { self.p4.get_mut() }
 	}
 
+    /// Translates a virtual page address to the actual physical address.
+    ///
+    /// # Returns
+    /// The physical address mapped to the given `virtual_address`. Or `None`
+    /// if the `virtual_address` is not mapped to any phsical address.
 	pub fn translate(&self, virtual_address: VirtualAddress) -> Option<PhysicalAddress> {
 		let offset = virtual_address % PAGE_SIZE;
 		self.translate_page(Page::containing_address(virtual_address))
 			.map(|frame| frame.number * PAGE_SIZE + offset)
 	}
 
+    /// Translates the given page into a physical memory frame it is mapped 
+    /// to.
 	fn translate_page(&self, page: Page) -> Option<Frame> {
 		use self::entry::HUGE_PAGE;
 
@@ -184,7 +191,8 @@ impl RecusivePageTable {
 	/// 
 	/// * If the page is not currently mapped.
 	/// * If the page is a huge page.
-	fn unmap<A>(&mut self, page: Page, allocator: &mut A) 
+    #[allow(unused_variables)]	
+    fn unmap<A>(&mut self, page: Page, allocator: &mut A) 
 		where A : FrameAllocator
 	{
 		// Assert that the page is mapped 
