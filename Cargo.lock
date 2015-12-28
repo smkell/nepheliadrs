@@ -3,6 +3,7 @@ name = "nepheliad"
 version = "0.1.0"
 dependencies = [
  "bitflags 0.3.3 (git+https://github.com/phil-opp/bitflags.git?branch=no_std)",
+ "cpuio 0.2.0",
  "multiboot2 0.1.0 (git+https://github.com/phil-opp/multiboot2-elf64)",
  "rlibc 0.1.4 (registry+https://github.com/rust-lang/crates.io-index)",
  "spin 0.3.4 (registry+https://github.com/rust-lang/crates.io-index)",
@@ -27,6 +28,10 @@ source = "git+https://github.com/phil-opp/bitflags.git?branch=no_std#86fd8e7081b
 name = "byteorder"
 version = "0.3.13"
 source = "registry+https://github.com/rust-lang/crates.io-index"
+
+[[package]]
+name = "cpuio"
+version = "0.2.0"
 
 [[package]]
 name = "csv"
