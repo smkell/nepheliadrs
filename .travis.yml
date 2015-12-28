@@ -12,5 +12,4 @@ addons:
     - nasm
 script:
 - make
-after_success: curl https://raw.githubusercontent.com/kmcallister/travis-doc-upload/master/travis-doc-upload.sh | sh
-
+after_success: scripts/travis-doc-upload.sh
