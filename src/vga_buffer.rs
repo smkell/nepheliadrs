@@ -1,3 +1,5 @@
+//! Provides a Rust interface for writing to the VGA buffer.
+
 use core::ptr::Unique;
 use spin::Mutex;
 
@@ -32,6 +34,7 @@ pub fn clear_screen() {
 
 /// Represents the colors available in text mode.
 #[allow(dead_code)]
+#[allow(missing_docs)]
 #[repr(u8)]
 pub enum Color {
     Black      = 0,

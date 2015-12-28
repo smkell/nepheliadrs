@@ -1,3 +1,5 @@
+//! Defines an interface for memory management.
+
 use self::paging::PhysicalAddress;
 pub use self::area_frame_allocator::AreaFrameAllocator;
 pub use self::paging::test_paging;

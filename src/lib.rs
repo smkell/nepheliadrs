@@ -1,3 +1,10 @@
+//! A kernel written in Rust.
+//!
+//! Many of the early implementation details are based on theese blog posts:
+//!
+//! * http://os.phil-opp.com/
+//! * http://www.randomhacks.net/bare-metal-rust/
+
 #![warn(missing_docs)]
 #![feature(lang_items, const_fn, unique)]
 #![no_std]
@@ -15,10 +22,9 @@ pub mod vga_buffer;
 
 pub mod memory;
 
+/// The main entry point for the kernel.
 #[no_mangle]
 pub extern fn rust_main(multiboot_information_address: usize) {
-
-
 	vga_buffer::clear_screen();
 	println!("Hello World{}", "!");
 
