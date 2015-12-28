@@ -12,4 +12,5 @@ addons:
     - nasm
 script:
 - make
+- make doc
 after_success: scripts/travis-doc-upload.sh
