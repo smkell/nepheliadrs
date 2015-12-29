@@ -1,6 +1,6 @@
 [package]
 name = "nepheliad"
-version = "0.2.1"
+version = "0.2.3"
 authors = ["Sean Kell <sean.michael.kell@gmail.com>"]
 
 [lib]

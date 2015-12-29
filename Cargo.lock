@@ -1,6 +1,6 @@
 [root]
 name = "nepheliad"
-version = "0.2.0"
+version = "0.2.3"
 dependencies = [
  "bitflags 0.3.3 (git+https://github.com/phil-opp/bitflags.git?branch=no_std)",
  "cpuio 0.2.0",
