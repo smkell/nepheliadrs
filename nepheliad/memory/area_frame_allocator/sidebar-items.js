@@ -1,0 +1,1 @@
+initSidebarItems({"struct":[["AreaFrameAllocator","Represents an allocator which uses the Mulitboot2 memory map to tack available memory areas."]]});
