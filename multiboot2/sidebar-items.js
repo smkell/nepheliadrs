@@ -1,1 +1,0 @@
-initSidebarItems({"enum":[["ElfSectionFlags",""],["ElfSectionType",""]],"fn":[["load",""]],"struct":[["BootInformation",""],["ElfSection",""],["ElfSectionIter",""],["ElfSectionsTag",""],["MemoryArea",""],["MemoryAreaIter",""],["MemoryMapTag",""]]});

@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["rust_main","The main entry point for the kernel."]],"mod":[["memory","Defines an interface for memory management."],["vga_buffer","Provides a Rust interface for writing to the VGA buffer."]]});
