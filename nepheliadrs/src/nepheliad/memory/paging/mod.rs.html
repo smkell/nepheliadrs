@@ -288,6 +288,19 @@
 <span id="245">245</span>
 <span id="246">246</span>
 <span id="247">247</span>
+<span id="248">248</span>
+<span id="249">249</span>
+<span id="250">250</span>
+<span id="251">251</span>
+<span id="252">252</span>
+<span id="253">253</span>
+<span id="254">254</span>
+<span id="255">255</span>
+<span id="256">256</span>
+<span id="257">257</span>
+<span id="258">258</span>
+<span id="259">259</span>
+<span id="260">260</span>
 </pre><pre class='rust '>
 <span class='doccomment'>//! Defines the interface and types for memory paging. </span>
 <span class='doccomment'>//!</span>
@@ -311,7 +324,10 @@
 
 <span class='kw'>const</span> <span class='ident'>ENTRY_COUNT</span>: <span class='ident'>usize</span> <span class='op'>=</span> <span class='number'>512</span>;
 
+<span class='doccomment'>/// Represents a physical memory address.</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>PhysicalAddress</span> <span class='op'>=</span> <span class='ident'>usize</span>;
+
+<span class='doccomment'>/// Represents a virtual memory address.</span>
 <span class='kw'>pub</span> <span class='kw'>type</span> <span class='ident'>VirtualAddress</span> <span class='op'>=</span> <span class='ident'>usize</span>;
 
 <span class='doccomment'>/// Represents a page of virtual memory.</span>
@@ -446,9 +462,14 @@
 	<span class='doccomment'>/// </span>
 	<span class='doccomment'>/// # Parameters</span>
 	<span class='doccomment'>/// </span>
-	<span class='doccomment'>/// * page - The page to map to a frame.</span>
-	<span class='doccomment'>/// * flags - The entry flags to apply to the new page entry.</span>
-	<span class='doccomment'>/// * allocator - The allocator to use for allocating the fame to the page.</span>
+	<span class='doccomment'>/// * `page`</span>
+	<span class='doccomment'>/// The page to map to a frame.</span>
+	<span class='doccomment'>/// </span>
+	<span class='doccomment'>/// * `flags`</span>
+	<span class='doccomment'>/// The entry flags to apply to the new page entry.</span>
+	<span class='doccomment'>///</span>
+	<span class='doccomment'>/// * `allocator`</span>
+	<span class='doccomment'>/// The allocator to use for allocating the fame to the page.</span>
 	<span class='doccomment'>/// </span>
 	<span class='doccomment'>/// # Panics </span>
 	<span class='doccomment'>/// </span>
@@ -505,6 +526,11 @@
 	}
 }
 
+<span class='doccomment'>/// Tests the paging Module.</span>
+<span class='doccomment'>///</span>
+<span class='doccomment'>/// # Parameters</span>
+<span class='doccomment'>/// ## allocator</span>
+<span class='doccomment'>/// The allocator to use for testing the paging functions.</span>
 <span class='kw'>pub</span> <span class='kw'>fn</span> <span class='ident'>test_paging</span><span class='op'>&lt;</span><span class='ident'>A</span><span class='op'>&gt;</span>(<span class='ident'>allocator</span>: <span class='kw-2'>&amp;</span><span class='kw-2'>mut</span> <span class='ident'>A</span>)
 	<span class='kw'>where</span> <span class='ident'>A</span> : <span class='ident'>FrameAllocator</span>
 {

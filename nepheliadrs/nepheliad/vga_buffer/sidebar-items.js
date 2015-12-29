@@ -1,0 +1,1 @@
+initSidebarItems({"enum":[["Color","Represents the colors available in text mode."]],"fn":[["clear_screen","Clears the background."]],"static":[["WRITER","The primary VGA writer."]],"struct":[["Writer","An object which writes to the VGA buffer."]]});

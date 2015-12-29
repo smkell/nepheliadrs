@@ -116,7 +116,22 @@
 <span id="73">73</span>
 <span id="74">74</span>
 <span id="75">75</span>
+<span id="76">76</span>
+<span id="77">77</span>
+<span id="78">78</span>
+<span id="79">79</span>
+<span id="80">80</span>
+<span id="81">81</span>
+<span id="82">82</span>
 </pre><pre class='rust '>
+<span class='doccomment'>//! A kernel written in Rust.</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! Many of the early implementation details are based on theese blog posts:</span>
+<span class='doccomment'>//!</span>
+<span class='doccomment'>//! * http://os.phil-opp.com/</span>
+<span class='doccomment'>//! * http://www.randomhacks.net/bare-metal-rust/</span>
+
+<span class='attribute'>#<span class='op'>!</span>[<span class='ident'>warn</span>(<span class='ident'>missing_docs</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>feature</span>(<span class='ident'>lang_items</span>, <span class='ident'>const_fn</span>, <span class='ident'>unique</span>)]</span>
 <span class='attribute'>#<span class='op'>!</span>[<span class='ident'>no_std</span>]</span>
 
@@ -129,14 +144,13 @@
 <span class='kw'>extern</span> <span class='kw'>crate</span> <span class='ident'>bitflags</span>;
 
 <span class='attribute'>#[<span class='ident'>macro_use</span>]</span>
-<span class='kw'>mod</span> <span class='ident'>vga_buffer</span>;
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>vga_buffer</span>;
 
-<span class='kw'>mod</span> <span class='ident'>memory</span>;
+<span class='kw'>pub</span> <span class='kw'>mod</span> <span class='ident'>memory</span>;
 
+<span class='doccomment'>/// The main entry point for the kernel.</span>
 <span class='attribute'>#[<span class='ident'>no_mangle</span>]</span>
 <span class='kw'>pub</span> <span class='kw'>extern</span> <span class='kw'>fn</span> <span class='ident'>rust_main</span>(<span class='ident'>multiboot_information_address</span>: <span class='ident'>usize</span>) {
-	
-
 	<span class='ident'>vga_buffer</span>::<span class='ident'>clear_screen</span>();
 	<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;Hello World{}&quot;</span>, <span class='string'>&quot;!&quot;</span>);
 
@@ -153,7 +167,7 @@
 
 	<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;kernel sections:&quot;</span>);
 	<span class='kw'>for</span> <span class='ident'>section</span> <span class='kw'>in</span> <span class='ident'>elf_sections_tag</span>.<span class='ident'>sections</span>() {
-		<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;    addr: 0x{:x}, size: 0x{:x}, flags: 0x{:x}&quot;</span>, 
+		<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;    addr: 0x{:x}, size: 0x{:x}, flags: 0x{:x}&quot;</span>,
 			<span class='ident'>section</span>.<span class='ident'>addr</span>, <span class='ident'>section</span>.<span class='ident'>size</span>, <span class='ident'>section</span>.<span class='ident'>flags</span>);
 	}
 
@@ -191,7 +205,8 @@
 	<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;\n\nPANIC in {} at line {}:&quot;</span>, <span class='ident'>file</span>, <span class='ident'>line</span>);
 	<span class='macro'>println</span><span class='macro'>!</span>(<span class='string'>&quot;    {}&quot;</span>, <span class='ident'>fmt</span>);
 	<span class='kw'>loop</span>{}
-}</pre>
+}
+</pre>
 </section>
     <section id='search' class="content hidden"></section>
 

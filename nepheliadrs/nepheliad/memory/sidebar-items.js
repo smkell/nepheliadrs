@@ -1,1 +1,1 @@
-initSidebarItems({});
+initSidebarItems({"constant":[["PAGE_SIZE","The size, in bytes, of a virtual memory page."]],"mod":[["area_frame_allocator","Implements a `FrameAllocator` which uses the Multiboot2 memory map to track available memory frames."],["paging","Defines the interface and types for memory paging."]],"struct":[["Frame","Represents a physical memory frame."]],"trait":[["FrameAllocator","The trait defining the interface for an object which allocates `Frame`s."]]});
