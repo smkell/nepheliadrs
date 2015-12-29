@@ -1,6 +1,6 @@
 //! A kernel written in Rust.
 //!
-//! Many of the early implementation details are based on theese blog posts:
+//! Many of the early implementation details are based on these blog posts:
 //!
 //! * http://os.phil-opp.com/
 //! * http://www.randomhacks.net/bare-metal-rust/
