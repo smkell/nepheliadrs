@@ -1,6 +1,6 @@
 [package]
 name = "cpuio"
-version = "0.2.0"
+version = "0.3.0"
 authors = [
 	"Eric Kidd <git@randomhacks.net>", 
 	"Sean Kell <sean.michael.kell@gmail.com>"
@@ -12,3 +12,6 @@ repository = "https://github.com/emk/toyos-rs"
 readme = "README.md"
 keywords = ["no_std", "kernel", "io"]
 license = "Apache-2.0/MIT"
+
+[dependencies]
+x86 = "0.5.0"

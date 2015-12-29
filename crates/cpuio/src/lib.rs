@@ -1,17 +1,17 @@
 //! CPU-level input/output instructions, including `inb`, `outb`, etc., and 
 //! a high level Rust wrapper.
 
+#![warn(missing_docs)]
 #![feature(asm)]
 #![feature(const_fn)]
 #![no_std]
 
+extern crate x86;
+
 use core::marker::PhantomData;
 
 #[cfg(any(target_arch="x86", target_arch="x86_64"))]
-pub use x86::{inb, outb, inw, outw, inl, outl};
-
-#[cfg(any(target_arch="x86", target_arch="x86_64"))]
-mod x86;
+pub use ::x86::io::{inb, outb, inw, outw, inl, outl};
 
 /// This trait is defined for any type which can be read or written over a
 /// port.
@@ -42,6 +42,7 @@ impl InOut for u32 {
     unsafe fn port_out(port: u16, value: u32) { outl(port, value) }
 }
 
+/// Rust interface for a CPU port.
 pub struct Port<T: InOut> {
     port: u16,
     phantom: PhantomData<T>,
