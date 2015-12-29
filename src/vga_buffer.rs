@@ -1,9 +1,12 @@
+//! Provides a Rust interface for writing to the VGA buffer.
+
 use core::ptr::Unique;
 use spin::Mutex;
 
 const BUFFER_HEIGHT: usize = 25;
 const BUFFER_WIDTH: usize = 80;
 
+/// The primary VGA writer.
 pub static WRITER: Mutex<Writer> = Mutex::new(Writer {
 	column_position: 0,
 	color_code: ColorCode::new(Color::LightGreen, Color::Black),
@@ -22,13 +25,16 @@ macro_rules! print {
     });
 }
 
+/// Clears the background.
 pub fn clear_screen() {
 	for _ in 0..BUFFER_HEIGHT {
 		println!("");
 	}
 }
 
+/// Represents the colors available in text mode.
 #[allow(dead_code)]
+#[allow(missing_docs)]
 #[repr(u8)]
 pub enum Color {
     Black      = 0,
@@ -69,6 +75,7 @@ struct Buffer {
 	chars: [[ScreenChar; BUFFER_WIDTH]; BUFFER_HEIGHT],
 }
 
+/// An object which writes to the VGA buffer.
 pub struct Writer {
 	column_position: usize,
 	color_code: ColorCode,
@@ -76,6 +83,9 @@ pub struct Writer {
 }
 
 impl Writer {
+	/// Writes a byte to the VGA buffer.
+	///
+	/// This function also handles scrolling the cursor.
 	pub fn write_byte(&mut self, byte: u8) {
 		match byte {
 			b'\n' => self.new_line(),

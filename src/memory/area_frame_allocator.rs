@@ -1,6 +1,11 @@
+//! Implements a `FrameAllocator` which uses the Multiboot2 memory map to track
+//! available memory frames.
+
 use memory::{Frame, FrameAllocator};
 use multiboot2::{MemoryAreaIter, MemoryArea};
 
+/// Represents an allocator which uses the Mulitboot2 memory map to tack
+/// available memory areas.
 pub struct AreaFrameAllocator {
     next_free_frame: Frame,
     current_area: Option<&'static MemoryArea>,
@@ -18,7 +23,7 @@ impl FrameAllocator for AreaFrameAllocator {
 			// implement Clone, but we can construct an identical frame.
 			let frame = Frame{ number: self.next_free_frame.number };
 
-			// the last frame of the current area 
+			// the last frame of the current area
 			let current_area_last_frame = {
 				let address = area.base_addr + area.length - 1;
 				Frame::containing_address(address as usize)
@@ -28,17 +33,17 @@ impl FrameAllocator for AreaFrameAllocator {
 				// all frames of current area are used, switch to next area
 				self.choose_next_area();
 			} else if frame >= self.kernel_start && frame <= self.kernel_end {
-				// 'frame' is used by the kernel 
+				// 'frame' is used by the kernel
 				self.next_free_frame = Frame {
 					number: self.kernel_end.number + 1
 				};
 			} else if frame >= self.multiboot_start && frame <= self.multiboot_end {
-				// 'frame' is used by the multiboot information structure 
+				// 'frame' is used by the multiboot information structure
 				self.next_free_frame = Frame {
 					number: self.multiboot_end.number + 1
 				};
 			} else {
-				// frame is unused, increment `next_free_frame` and return it 
+				// frame is unused, increment `next_free_frame` and return it
 				self.next_free_frame.number += 1;
 				return Some(frame);
 			}
@@ -55,9 +60,31 @@ impl FrameAllocator for AreaFrameAllocator {
 }
 
 impl AreaFrameAllocator {
+	/// Constructs a new `AreaFrameAllocator`.
+	///
+	/// # Parameters
+	///
+	/// * `kernel_start`
+	/// The address where the start of the kernel is loaded.
+	///
+	/// * `kernel_end`
+	/// The last address occupied by the kernel.
+	///
+	/// * `multiboot_start`
+	/// The address where the start of the multiboot info structure is loaded.
+	///
+	/// * `mulitboot_end`
+	/// The last address occupied by the multiboot info structure.
+	///
+	/// * `memory_areas`
+	/// An iterator over the multiboot memory map.
+    ///
+    /// # Returns
+    ///
+    /// A newly initialized instance of `AreaFrameAllocator`
 	pub fn new(
-		kernel_start: usize, 
-		kernel_end: usize, 
+		kernel_start: usize,
+		kernel_end: usize,
 		multiboot_start: usize,
 		multiboot_end: usize,
 		memory_areas: MemoryAreaIter
