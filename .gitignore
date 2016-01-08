@@ -2,3 +2,4 @@ target
 build
 .vagrant
 .ssh
+rust-os-gdb

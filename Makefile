@@ -25,6 +25,8 @@ assembly_source_files := $(wildcard src/arch/$(arch)/*.asm)
 assembly_object_files := $(patsubst src/arch/$(arch)/%.asm, \
 	build/arch/$(arch)/%.o, $(assembly_source_files))
 
+rust_os_gdb := rust-os-gdb/bin/rust-gdb
+
 .PHONY: all clean run iso doc
 
 all: $(kernel)
@@ -36,9 +38,15 @@ clean:
 doc: $(wildcard src/*.rs src/*/*.rs crates/*/src/*.rs)
 	@cargo doc --target $(target)
 
-
 run: $(iso)
 	@qemu-system-x86_64 -drive format=raw,file=$(iso) -m 500M
+
+debug: $(iso) $(rust_os_gdb)
+	@qemu-system-x86_64 -cdrom $(iso) -s -S &
+	$(rust_os_gdb) $(kernel) -ex "target remote :1234"
+
+$(rust_os_gdb):
+	@curl -sf https://raw.githubusercontent.com/phil-opp/binutils-gdb/rust-os/build-rust-os-gdb.sh | sh
 
 iso: $(iso)
 
